@@ -9,14 +9,14 @@
       rel="stylesheet"
     />
     <link href="styles.css" rel="stylesheet" />
-    <script type="module" src="js/Calculator.js" defer></script>
+    <script src="js/Calculator.js" type="module" defer></script>
     <script src="script.js" type="module" defer></script>
   </head>
   <body>
     <div class="grid-container">
       <div class="output">
-        <div class="previous-operand"></div>
-        <div class="current-operand"></div>
+        <div data-previous-operand class="previous-operand"></div>
+        <div data-current-operand class="current-operand">0</div>
       </div>
       <button data-operation>%</button>
       <button data-delete>DEL</button>
@@ -37,7 +37,7 @@
       <button data-number>8</button>
       <button data-number>9</button>
       <button data-operation>-</button>
-      <button data-operation>+/-</button>
+      <button id="signed-button">+/-</button>
       <button data-number>0</button>
       <button data-number>.</button>
       <button data-equals id="equal-button">=</button>
