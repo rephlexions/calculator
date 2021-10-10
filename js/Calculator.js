@@ -78,7 +78,9 @@ export default class Calculator {
     if (isNaN(integerDigits)) {
       integerDisplay = "";
     } else {
-      integerDisplay = integerDigits.toLocaleString();
+      integerDisplay = integerDigits.toLocaleString("en-GB", {
+        maximumFractionDigits: 0,
+      });
     }
     if (decimalDigits != null) {
       return `${integerDisplay}.${decimalDigits}`;
