@@ -1,3 +1,5 @@
+import { sum, substract, multiply, divide } from "./mathFunctions.js";
+
 export default class Calculator {
   constructor(previousOperandNode, currentOperandNode) {
     this.previousOperandNode = previousOperandNode;
@@ -6,13 +8,13 @@ export default class Calculator {
   }
 
   clear() {
-    this.currentOperand = "0";
+    this.currentOperand = "";
     this.previousOperand = "";
     this.operation = undefined;
   }
 
   deleteCurrentOperand() {
-    this.currentOperand = "0" + this.currentOperand.toString().slice(0, -1);
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
   }
 
   chooseOperation(operation) {
@@ -22,25 +24,26 @@ export default class Calculator {
     }
     this.operation = operation;
     this.previousOperand = this.currentOperand;
+    this.currentOperand = " ";
   }
 
   compute() {
     let computation;
     const prev = parseFloat(this.previousOperand);
-    const current = parseFloat(this.currentOperand);
+    const curr = parseFloat(this.currentOperand);
     if (isNaN(prev) && current === 0) return 0;
     switch (this.operation) {
       case "+":
-        computation = prev + current;
+        computation = sum(prev, curr);
         break;
       case "-":
-        computation = prev - current;
+        computation = substract(prev, curr);
         break;
       case "*":
-        computation = prev * current;
+        computation = multiply(prev, curr);
         break;
       case "÷":
-        computation = prev / current;
+        computation = divide(prev, curr);
         break;
       default:
         return;
@@ -52,11 +55,7 @@ export default class Calculator {
 
   appendDigit(digit) {
     if (digit === "." && this.currentOperand.includes(".")) return;
-    if (this.currentOperandNode.innerText[0] === digit.toString()) {
-      this.currentOperand = this.currentOperand + digit.toString();
-    } else {
-      this.currentOperand = "" + digit.toString();
-    }
+    this.currentOperand = this.currentOperand.toString() + digit.toString();
   }
 
   signNumber() {
@@ -67,20 +66,23 @@ export default class Calculator {
     }
   }
 
+  setPI() {
+    this.currentOperand = "3.14159265359";
+  }
+
   getDisplayNumber(number) {
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split(".")[0]);
     const decimalDigits = stringNumber.split(".")[1];
-    let integerDisplay = "0";
-    if (isNaN(integerDisplay)) {
-      integerDisplay = "0";
+    let integerDisplay;
+    if (isNaN(integerDigits)) {
+      integerDisplay = "";
     } else {
-      integerDisplay = integerDigits.toLocaleString("en-GB");
+      integerDisplay = integerDigits.toLocaleString();
     }
     if (decimalDigits != null) {
       return `${integerDisplay}.${decimalDigits}`;
     } else {
-      integerDisplay = integerDigits;
       return integerDisplay;
     }
   }

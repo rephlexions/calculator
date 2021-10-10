@@ -9,6 +9,7 @@ const clearButton = document.querySelector("[data-clear]");
 const equalsButton = document.querySelector("[data-equals]");
 const numberButtons = document.querySelectorAll("[data-number]");
 const signedButton = document.getElementById("signed-button");
+const piButton = document.getElementById("pi-button");
 
 const calculator = new Calculator(previousOperandNode, currentOperandNode);
 
@@ -36,6 +37,11 @@ equalsButton.addEventListener("click", (button) => {
 
 signedButton.addEventListener("click", (button) => {
   calculator.signNumber();
+  calculator.updateDisplay();
+});
+
+piButton.addEventListener("click", (button) => {
+  calculator.setPI();
   calculator.updateDisplay();
 });
 
