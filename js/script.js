@@ -1,5 +1,5 @@
 "use strict";
-import Calculator from "./js/Calculator.js";
+import Calculator from "./Calculator.js";
 
 const previousOperandNode = document.querySelector("[data-previous-operand]");
 const currentOperandNode = document.querySelector("[data-current-operand]");
